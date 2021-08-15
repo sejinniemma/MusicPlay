@@ -34,6 +34,35 @@
         const next = document.querySelector('.next');
         const audio = document.querySelector('.audio');
 
+        // first we will create song list
+        const songList = [
+            {
+                path: "Baby.mp3",
+                songName: "Baby",
+            },
+            {
+                path: "Sunday.mp3",
+                songName: "Sunday",
+            },
+            {
+                path: "Feel.mp3",
+                songName: "Feel",
+            },
+            {
+                path: "Prism.mp3",
+                songName: "Prism",
+            },{
+                path: "Wolf_Moon.mp3",
+                songName: "Wolf_Moon",
+            }
+        ]
+        let song_Playing = false;
+
+        //play song
+        function playSong(){
+            song_Playing = true;
+            audio.play();
+        }
     </script>
 </body>
 </html>
