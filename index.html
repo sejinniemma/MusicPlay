@@ -63,6 +63,7 @@
         function playSong(){
             song_Playing = true;
             playPause.classList.add('active');
+            playPause.innerHTML = '<ion-icon name="pause-outline"></ion-icon>'
             loadSong(songList[i]);
             audio.play();
         }
@@ -71,6 +72,7 @@
          function pauseSong(){
             song_Playing = false;
             playPause.classList.remove('active');
+            playPause.innerHTML = '<ion-icon name="play-outline"></ion-icon>'
             audio.pause();
         }
 
