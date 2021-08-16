@@ -90,15 +90,28 @@
          //on load - select first song from song list
          
 
-         next.addEventListener('click',()=>{
-            i++;
-            loadSong(songList[i]);
-         })
+         next.addEventListener('click',nextSong);
 
-         prev.addEventListener('click',()=>{
-            i--;
+         function nextSong(){
+            i++;
+            if( i > songList.length - 1){
+                i = 0;
+            }
             loadSong(songList[i]);
-         })
+            playSong();
+         }
+
+
+         prev.addEventListener('click',prevSong);
+
+        function prevSong(){
+            i--;
+            if(i < 0){
+                i = songList.length - 1;
+            }
+            loadSong(songList[i]);
+            playSong();
+        }
          
 
          
