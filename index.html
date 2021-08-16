@@ -32,30 +32,31 @@
         const prev = document.querySelector('.prev');
         const playPause = document.querySelector('.playPause');
         const next = document.querySelector('.next');
-        const audio = document.querySelector('.audio');
+        const audio = document.querySelector('audio');
 
         // first we will create song list
         const songList = [
             {
-                path: "Baby.mp3",
+                path: "music/music/Baby.mp3",
                 songName: "Baby",
             },
             {
-                path: "Sunday.mp3",
+                path: "music/music/Sunday.mp3",
                 songName: "Sunday",
             },
             {
-                path: "Feel.mp3",
+                path: "music/music/Feel.mp3",
                 songName: "Feel",
             },
             {
-                path: "Prism.mp3",
+                path: "music/music/Prism.mp3",
                 songName: "Prism",
             },{
-                path: "Wolf_Moon.mp3",
+                path: "music/music/Wolf_Moon.mp3",
                 songName: "Wolf_Moon",
             }
         ]
+        
         let song_Playing = false;
 
         //play song
@@ -63,6 +64,31 @@
             song_Playing = true;
             audio.play();
         }
+        
+        //pause song
+         function pauseSong(){
+            song_Playing = false;
+            audio.pause();
+        }
+
+        //play or pause song on click
+        playPause.addEventListener('click',() => (song_Playing ?
+         pauseSong() : playSong()));
+
+         //load song
+         function loadSong(songList){
+            title.textContent = songList.songName;
+            audio.src = songList.path;
+         }
+         // current song
+         let i = 0;
+         //on load - select first song from song list
+         loadSong(songList[i]);
+         
+
+         
+
+         
     </script>
 </body>
 </html>
