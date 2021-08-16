@@ -62,6 +62,8 @@
         //play song
         function playSong(){
             song_Playing = true;
+            playPause.classList.add('active');
+            loadSong(songList[i]);
             audio.play();
         }
         
@@ -83,7 +85,17 @@
          // current song
          let i = 0;
          //on load - select first song from song list
-         loadSong(songList[i]);
+         
+
+         next.addEventListener('click',()=>{
+            i++;
+            loadSong(songList[i]);
+         })
+
+         prev.addEventListener('click',()=>{
+            i--;
+            loadSong(songList[i]);
+         })
          
 
          
