@@ -85,11 +85,11 @@
             title.textContent = songList.songName;
             audio.src = songList.path;
          }
-         // current song
-         let i = 0;
-         //on load - select first song from song list
-         
 
+
+         //next song
+         let i = 0;
+         
          next.addEventListener('click',nextSong);
 
          function nextSong(){
@@ -101,7 +101,7 @@
             playSong();
          }
 
-
+         //prev song
          prev.addEventListener('click',prevSong);
 
         function prevSong(){
@@ -111,12 +111,7 @@
             }
             loadSong(songList[i]);
             playSong();
-        }
-         
-
-         
-
-         
+        }      
     </script>
 </body>
 </html>
