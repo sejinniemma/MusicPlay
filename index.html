@@ -1,117 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Music Player</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="music">
-        <h2 class="title">Music Name</h2>
-        <div class="player">
-            <audio src=""></audio>
-            <div class="btns">
-                <span class="prev">
-                    <ion-icon name="play-back-outline"></ion-icon>
-                </span>
-                <span class="playPause">
-                    <ion-icon name="play-outline"></ion-icon>
-                </span>
-                <span class="next">
-                    <ion-icon name="play-forward-outline"></ion-icon>
-                </span>
-            </div>
+      <h2 class="title">Music Name</h2>
+      <div class="player">
+        <audio src=""></audio>
+        <div class="btns">
+          <span class="prev">
+            <ion-icon name="play-back-outline"></ion-icon>
+          </span>
+          <span class="playPause">
+            <ion-icon name="play-outline"></ion-icon>
+          </span>
+          <span class="next">
+            <ion-icon name="play-forward-outline"></ion-icon>
+          </span>
         </div>
+      </div>
     </div>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
     <script>
-        const title = document.querySelector('.title');
-        const prev = document.querySelector('.prev');
-        const playPause = document.querySelector('.playPause');
-        const next = document.querySelector('.next');
-        const audio = document.querySelector('audio');
+      const title = document.querySelector('.title')
+      const prev = document.querySelector('.prev')
+      const playPause = document.querySelector('.playPause')
+      const next = document.querySelector('.next')
+      const audio = document.querySelector('audio')
 
-        // first we will create song list
-        const songList = [
-            {
-                path: "music/music/Baby.mp3",
-                songName: "Baby",
-            },
-            {
-                path: "music/music/Sunday.mp3",
-                songName: "Sunday",
-            },
-            {
-                path: "music/music/Feel.mp3",
-                songName: "Feel",
-            },
-            {
-                path: "music/music/Prism.mp3",
-                songName: "Prism",
-            },{
-                path: "music/music/Wolf_Moon.mp3",
-                songName: "Wolf_Moon",
-            }
-        ]
-        
-        let song_Playing = false;
+      // first we will create song list
+      const songList = [
+        {
+          path: 'music/music/Baby.mp3',
+          songName: 'Baby',
+        },
+        {
+          path: 'music/music/Sunday.mp3',
+          songName: 'Sunday',
+        },
+        {
+          path: 'music/music/Feel.mp3',
+          songName: 'Feel',
+        },
+        {
+          path: 'music/music/Prism.mp3',
+          songName: 'Prism',
+        },
+        {
+          path: 'music/music/Wolf_Moon.mp3',
+          songName: 'Wolf_Moon',
+        },
+      ]
 
-        //play song
-        function playSong(){
-            song_Playing = true;
-            playPause.classList.add('active');
-            playPause.innerHTML = '<ion-icon name="pause-outline"></ion-icon>'
-            loadSong(songList[i]);
-            audio.play();
+      let song_Playing = false
+
+      //play song
+      function playSong() {
+        song_Playing = true
+        playPause.classList.add('active')
+        playPause.innerHTML = '<ion-icon name="pause-outline"></ion-icon>'
+        loadSong(songList[i])
+        audio.play()
+      }
+
+      //pause song
+      function pauseSong() {
+        song_Playing = false
+        playPause.classList.remove('active')
+        playPause.innerHTML = '<ion-icon name="play-outline"></ion-icon>'
+        audio.pause()
+      }
+
+      //play or pause song on click
+      playPause.addEventListener('click', () =>
+        song_Playing ? pauseSong() : playSong(),
+      )
+
+      //load song
+      function loadSong(songList) {
+        title.textContent = songList.songName
+        audio.src = songList.path
+      }
+
+      //next song
+      let i = 0
+
+      next.addEventListener('click', nextSong)
+
+      function nextSong() {
+        i++
+        if (i > songList.length - 1) {
+          i = 0
         }
-        
-        //pause song
-         function pauseSong(){
-            song_Playing = false;
-            playPause.classList.remove('active');
-            playPause.innerHTML = '<ion-icon name="play-outline"></ion-icon>'
-            audio.pause();
+        loadSong(songList[i])
+        playSong()
+      }
+
+      //prev song
+      prev.addEventListener('click', prevSong)
+
+      function prevSong() {
+        i--
+        if (i < 0) {
+          i = songList.length - 1
         }
-
-        //play or pause song on click
-        playPause.addEventListener('click',() => (song_Playing ?
-         pauseSong() : playSong()));
-
-         //load song
-         function loadSong(songList){
-            title.textContent = songList.songName;
-            audio.src = songList.path;
-         }
-
-
-         //next song
-         let i = 0;
-         
-         next.addEventListener('click',nextSong);
-
-         function nextSong(){
-            i++;
-            if( i > songList.length - 1){
-                i = 0;
-            }
-            loadSong(songList[i]);
-            playSong();
-         }
-
-         //prev song
-         prev.addEventListener('click',prevSong);
-
-        function prevSong(){
-            i--;
-            if(i < 0){
-                i = songList.length - 1;
-            }
-            loadSong(songList[i]);
-            playSong();
-        }      
+        loadSong(songList[i])
+        playSong()
+      }
     </script>
-</body>
+  </body>
 </html>
